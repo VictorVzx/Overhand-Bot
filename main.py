@@ -189,6 +189,7 @@ async def lembrar_agua():
     print("Anúncio enviado")
 
 @bot.command()
+@commands.has_permissions(administrator=True)
 async def atividade(ctx, tipo, *, texto):
     usuario = ctx.author.display_name
     tipo = tipo.lower()
