@@ -155,6 +155,9 @@ async def menu(ctx):
     usuario = ctx.author.display_name
     print(f"{usuario} utilizou .menu")
 
+@bot.command()
+async def todos(ctx):
+    await ctx.send("@everyone")
 
 # -------- Lembrete de água -------- #
 
