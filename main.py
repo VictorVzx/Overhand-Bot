@@ -90,14 +90,17 @@ async def on_member_join(member):
     except:
         print(f"Erro ao adicionar cargo: {e}") # type: ignore
     
-    canal = member.guild.get_channel(1440686888653557820)
+    canal = member.guild.system_channel
 
-    if canal: 
-        await canal.send(f"Bem-vindo(a) {member.mention}! Ta liberado fazer carinho em mim, hehe..")
-        print(f"{member} se juntou ao servidor")
-
+    if canal and canal.permissions_for(member.guild.me).send_messages:
+        await canal.send(f"🐾 Bem-vindo(a) ao servidor, {member.mention}!")
+        print(f"{member} se juntou ao servidor!")
     else:
-        print("Canal de boas-vindas não encontrado!")
+        for ch in member.guild.text_channels:
+            if ch.permissions_for(member.guild.me).send_messages:
+                await ch.send(f"🐾 Bem-vindo(a) {member.mention}!")
+                print(f"{member} se juntou ao servidor!")
+                break
 
 @bot.command()
 @commands.has_permissions(manage_roles=True)
