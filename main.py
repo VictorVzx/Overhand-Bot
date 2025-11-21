@@ -61,6 +61,12 @@ async def gata(ctx):
     print(f"{usuario} utilizou .gata")
 
 @bot.command()
+async def cat(ctx):
+    await ctx.reply("Meow!")
+    usuario = ctx.author.display_name
+    print(f"{usuario} utilizou .cat")
+
+@bot.command()
 async def dono(ctx):
     dono_id = 829402485419409408
     await ctx.reply(f"Meu dono é o <@{dono_id}>!\nGitHub: https://github.com/VictorVzx")
@@ -165,11 +171,14 @@ async def menu(ctx):
         " .ping --> Testar a velocidade de resposta do bot.\n"
         " .uptime --> Ver há quanto tempo o bot está funcionando\n"
         " .dono --> Informações sobre o dono do bot.\n"
+        " .gato/gata --> Miaaaaau.\n"
         "## Comandos admin:\n"
         " .clear *numero de mensagens --> Limpa as mensagens do chat.\n"
-        " .ban --> Banir membros do servidor\n"
-        " .role @usuario Cargo--> Dar um cargo ao membro mencionado.\n"
-        " .unrole @usuario Cargo --> Remover um cargo do membro mencionado\n"
+        " .todos --> Marca todos do servidor.\n"
+        " .atividade jogando/ouvindo/assistindo + conteúdo --> Muda a atividade do bot.\n"
+        " .ban + motivo --> Banir membros do servidor\n"
+        " .role + @usuario + Cargo--> Dar um cargo ao membro mencionado.\n"
+        " .unrole + @usuario + Cargo --> Remover um cargo do membro mencionado\n"
     )
     usuario = ctx.author.display_name
     print(f"{usuario} utilizou .menu")
