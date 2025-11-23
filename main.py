@@ -12,9 +12,13 @@ bot = commands.Bot(".", intents=intents)
 
 
 # Carregar cogs automaticamente
-for file in os.listdir("./cogs"):
-    if file.endswith(".py"):
-        bot.load_extension(f"cogs.{file[:-3]}")
+@bot.event
+async def setup_hook():
+    for file in os.listdir("./cogs"):
+        if file.endswith(".py"):
+            await bot.load_extension(f"cogs.{file[:-3]}")
+            print(f"Carregado: {file}")
+
 
 
 @bot.event
