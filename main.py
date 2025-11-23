@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 import os
 start_time = time.time()
 import discord
-from plyer import notification
 from discord.ext import commands, tasks 
 
 
