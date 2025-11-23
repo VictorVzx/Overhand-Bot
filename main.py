@@ -221,6 +221,8 @@ async def lembrar_agua():
 @bot.command()
 async def protetorSolar(ctx):
     await ctx.reply("Protetor solar colocado! 😎")
+    usuario = ctx.author.display_name
+    print(f"{usuario} colocou protetores solares no bot.")
 
 @bot.command()
 @commands.has_permissions(administrator=True)
