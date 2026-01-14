@@ -167,6 +167,18 @@ async def create_role(ctx, *, role_name):
     except Exception as e:
         await ctx.send("❌ Ocorreu um erro: {e}")
 
+@create_role.error
+async def create_role_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        embed = discord.Embed(
+            title="Acesso Negado",
+            description=f"❌ Sinto muito {ctx.author.mention}, mas você preicsa da permissão **Administrador** para usar este comando.",
+            color=discord.Color.red()
+        )
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("⚠️ Por favor, digite o nome do cargo após o comando. Ex: `!create_role VIP`.")
+
 @bot.command()
 async def role(ctx, membro: discord.Member, *, cargo_nome):
     cargo = discord.utils.get(ctx.guild.roles, name=cargo_nome)
@@ -208,20 +220,22 @@ async def menu(ctx):
     await ctx.reply(
         "# 🐾 Menu 🐾\n"
         "## **Comandos:**\n"
-        " !menu --> Ver o menu de comandos do bot.\n"
-        " !ping --> Testar a velocidade de resposta do bot.\n"
-        " !uptime --> Ver há quanto tempo o bot está funcionando\n"
-        " !dono --> Informações sobre o dono do bot.\n"
-        " !gato/gata --> Miaaaaau.\n"
-        "!olá --> Saudações \n"
-        "!site --> Site do bot com informações\n"
+        " `!menu` --> Ver o menu de comandos do bot.\n"
+        " `!ping` --> Testar a velocidade de resposta do bot.\n"
+        " `!uptime` --> Ver há quanto tempo o bot está funcionando\n"
+        " `!dono` --> Informações sobre o dono do bot.\n"
+        " `!gato/gata` --> Miaaaaau.\n"
+        " `!olá` --> Saudações \n"
+        " `!site` --> Site do bot com informações\n"
+
         "## Comandos admin:\n"
-        " !clear *numero de mensagens --> Limpa as mensagens do chat.\n"
-        " !todos --> Marca todos do servidor.\n"
-        " !atividade jogando/ouvindo/assistindo + conteúdo --> Muda a atividade do bot.\n"
-        " !ban + motivo --> Banir membros do servidor\n"
-        " !role + @usuario + Cargo--> Dar um cargo ao membro mencionado.\n"
-        " !unrole + @usuario + Cargo --> Remover um cargo do membro mencionado\n"
+        " `!clear *numero de mensagens` --> Limpa as mensagens do chat.\n"
+        " `!todos` --> Marca todos do servidor.\n"
+        " `!atividade` jogando/ouvindo/assistindo + conteúdo --> Muda a atividade do bot.\n"
+        " `!ban + motivo` --> Banir membros do servidor\n"
+        " `!create_role` nome_do_cargo--> Criar um cargo \n"
+        " `!role + @usuario + Cargo`--> Dar um cargo ao membro mencionado.\n"
+        " `!unrole + @usuario + Cargo` --> Remover um cargo do membro mencionado\n"
     )
     usuario = ctx.author.display_name
     print(f"{usuario} utilizou !menu")
