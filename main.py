@@ -84,7 +84,7 @@ async def cat(ctx):
 @bot.command()
 async def dono(ctx):
     dono_id = 829402485419409408
-    await ctx.reply(f"Meu dono é o <@{dono_id}>!\nGitHub: https://github.com/VictorVzx")
+    await ctx.reply(f"Meu dono é o <@{dono_id}>!\nGitHub: https://github.com/VictorVzx/")
     usuario = ctx.author.display_name
     print(f"{usuario} usou !dono")
 
