@@ -141,7 +141,33 @@ async def on_member_join(member):
 
 @bot.command()
 @commands.has_permissions(manage_roles=True)
+async def create_role(ctx, *, role_name):
+    server = ctx.guild
 
+    try:
+        random_color = discord.Colour.random()
+
+        new_role = await server.create_role (
+            name=role_name,
+            colour=random_color,
+            reason=f"Comando executado por {ctx.author}",
+            hoist=True
+        )
+
+        embed = discord.Embed(
+            description=f"✅ Cargo **{new_role.name}** criado!",
+            color=random_color
+        )
+
+        embed.add_field(name="Cor aplicada", value=str(random_color))
+
+        await ctx.send(embed=embed)
+    except discord.Forbidden:
+        await ctx.send("❌ Erro: Eu não possuo a permissão **Gerenciar Cargos**")
+    except Exception as e:
+        await ctx.send("❌ Ocorreu um erro: {e}")
+
+@bot.command()
 async def role(ctx, membro: discord.Member, *, cargo_nome):
     cargo = discord.utils.get(ctx.guild.roles, name=cargo_nome)
 
