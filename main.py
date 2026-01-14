@@ -9,17 +9,6 @@ from discord.ext import commands, tasks
 intents = discord.Intents.all()
 bot = commands.Bot("!", intents=intents)  
 
-
-# Carregar cogs automaticamente
-@bot.event
-async def setup_hook():
-    for file in os.listdir("./cogs"):
-        if file.endswith(".py"):
-            await bot.load_extension(f"cogs.{file[:-3]}")
-            print(f"Carregado: {file}")
-
-
-
 @bot.event
 async def on_ready():
     print("Meow, meow! Overhand is online.")
