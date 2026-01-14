@@ -231,9 +231,9 @@ async def menu(ctx):
         "## Comandos admin:\n"
         " `!clear *numero de mensagens` --> Limpa as mensagens do chat.\n"
         " `!todos` --> Marca todos do servidor.\n"
-        " `!atividade` jogando/ouvindo/assistindo + conteúdo --> Muda a atividade do bot.\n"
+        " `!atividade jogando/ouvindo/assistindo + conteúdo` --> Muda a atividade do bot.\n"
         " `!ban + motivo` --> Banir membros do servidor\n"
-        " `!create_role` nome_do_cargo--> Criar um cargo \n"
+        " `!create_role nome_do_cargo` --> Criar um cargo \n"
         " `!role + @usuario + Cargo`--> Dar um cargo ao membro mencionado.\n"
         " `!unrole + @usuario + Cargo` --> Remover um cargo do membro mencionado\n"
     )
