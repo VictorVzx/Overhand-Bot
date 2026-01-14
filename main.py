@@ -222,7 +222,7 @@ async def clear(ctx, quantidade: int):
     usuario = ctx.author.display_name
     print(f"{usuario} apagou {quantidade} mensagens")
 
-@tasks.loop(hours=1)
+@tasks.loop(hours=3)
 async def lembrar_agua():
     channel = bot.get_channel(1440685459645661195)
     await channel.send(f"Acesse a minha [página](https://overhandpg.vercel.app) para mais informações.")
