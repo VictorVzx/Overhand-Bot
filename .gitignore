@@ -1,2 +1,4 @@
 .env
 levels.json
+.venv/
+.vscode/
