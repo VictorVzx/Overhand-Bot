@@ -169,6 +169,34 @@ async def create_role_error(ctx, error):
         await ctx.send("⚠️ Por favor, digite o nome do cargo após o comando. Ex: `!create_role VIP`.")
 
 @bot.command()
+@commands.has_permissions(manage_roles=True)
+async def remove_role(ctx, *, role_name):
+    role = discord.utils.get(ctx.guild.roles, name=role_name)
+
+    if role is None:
+        return await ctx.send(f"❌ Cargo '{role_name}' não encontrado.")
+
+    try:
+        await role.delete(reason=f"Comando executado por {ctx.author}")
+        await ctx.send(f"✅ Cargo **{role_name}** removido com sucesso.")
+    except discord.Forbidden:
+        await ctx.send("❌ Erro: Eu não possuo a permissão **Gerenciar Cargos**")
+    except Exception as e:
+        await ctx.send(f"❌ Ocorreu um erro: {e}")
+
+@remove_role.error
+async def remove_role_error(ctx, error):
+    if isinstance(error, commands.MissingPermissions):
+        embed = discord.Embed(
+            title="Acesso Negado",
+            description=f"❌ Sinto muito {ctx.author.mention}, mas você preicsa da permissão **Administrador** para usar este comando.",
+            color=discord.Color.red()
+        )
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.MissingRequiredArgument):
+        await ctx.send("⚠️ Por favor, digite o nome do cargo após o comando. Ex: `!remove_role VIP`.")
+
+@bot.command()
 async def role(ctx, membro: discord.Member, *, cargo_nome):
     cargo = discord.utils.get(ctx.guild.roles, name=cargo_nome)
 
